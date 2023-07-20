@@ -1,10 +1,9 @@
-﻿namespace OrderManagement.Model.Entities
+﻿using Microsoft.AspNetCore.Identity;
+
+namespace OrderManagement.Model.Entities
 {
-    public class Customer
+    public class Customer : IdentityUser<int>
     {
-        public int CustomerId { get; set; }
-        public string? Username { get; set; }
-        public string? Email { get; set; }
         public string? Password { get; set; }
     }
 }

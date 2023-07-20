@@ -1,4 +1,7 @@
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.Identity;
 using OrderManagement.Api.Extensions;
+using OrderManagement.Infrastructure;
 using OrderManagement.Infrastructure.Extensions;
 using System.Text.Json.Serialization;
 
@@ -12,6 +15,9 @@ builder.Services.ConfigureDatabase(builder.Configuration);
 
 builder.Services.ConfigureDependencyInjection();
 builder.Services.ConfigureApiDocumentation();
+builder.Services.ConfigureAuthentication(builder.Configuration);
+
+
 
 var app = builder.Build();
 
@@ -29,6 +35,7 @@ app.UseHttpsRedirection();
 
 app.UseOpenApiDocumentation();
 
+app.UseAuthentication();
 app.UseAuthorization();
 
 app.MapControllers();
