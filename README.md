@@ -8,6 +8,8 @@ This is an order management REST API
     
     docker run -e "ACCEPT_EULA=Y" -e "SA_PASSWORD=yourStrongPassword!2" -p 1433:1433 -d mcr.microsoft.com/mssql/server:latest
 
+    run migrations through "Update-database" command
+
 ## Run the application
 
     dotnet run
