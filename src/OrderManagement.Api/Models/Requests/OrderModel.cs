@@ -11,14 +11,13 @@ namespace OrderManagement.Api.Models.Requests
         [Range(0, double.MaxValue, ErrorMessage = "The value must be greater than 0")]
         public int QuantityOfProducts { get; set; }
 
-        public Order BuildOrder(int customerId, Product product, int quantityOfProducts)
+        public Order BuildOrder(int customerId, Product product)
         {
             return new Order()
             {
                 CustomerId = customerId,
                 ProductId = ProductId,
-                QuantityOfProducts = quantityOfProducts,
-                TotalCost = product.Price,
+                QuantityOfProducts = QuantityOfProducts
             };
         }
     }

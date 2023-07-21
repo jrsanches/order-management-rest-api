@@ -1,8 +1,8 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using OrderManagement.Api.Models.Requests;
+using OrderManagement.Api.Providers;
 using OrderManagement.Infrastructure.Interfaces;
-using System.Security.Claims;
 
 namespace OrderManagement.Api.Controllers
 {
@@ -12,14 +12,14 @@ namespace OrderManagement.Api.Controllers
     public class OrderController : ControllerBase
     {
         private readonly IUnitOfWork _unitOfWork;
-        private readonly IHttpContextAccessor _httpContextAccessor;
+        private readonly ContextUserDataProvider _contextUserDataProvider;
 
         public OrderController(
             IUnitOfWork unitOfWork,
-            IHttpContextAccessor httpContextAccessor)
+            ContextUserDataProvider contextUserDataProvider)
         {
             _unitOfWork = unitOfWork;
-            _httpContextAccessor = httpContextAccessor;
+            _contextUserDataProvider = contextUserDataProvider;
         }
 
         [HttpPost]
@@ -32,8 +32,8 @@ namespace OrderManagement.Api.Controllers
                 return NotFound($"Product {model.ProductId} not found.");
             }
 
-            var customerId = GetCustomerId();
-            var order = model.BuildOrder(customerId, product, model.QuantityOfProducts);
+            var customerId = _contextUserDataProvider.GetCustomerId();
+            var order = model.BuildOrder(customerId, product);
 
             await _unitOfWork.OrderRepository.Insert(order);
             await _unitOfWork.Commit();
@@ -44,7 +44,7 @@ namespace OrderManagement.Api.Controllers
         [HttpGet]
         public async Task<IActionResult> GetOrders()
         {
-            var customerId = GetCustomerId();
+            var customerId = _contextUserDataProvider.GetCustomerId();
             var orders = await _unitOfWork.OrderRepository.GetAll(e => e.CustomerId == customerId);
 
             return Ok(orders);
@@ -54,13 +54,11 @@ namespace OrderManagement.Api.Controllers
         [Route("{orderId}")]
         public async Task<IActionResult> GetOrderById([FromRoute] int orderId)
         {
-            var order = await _unitOfWork.OrderRepository.GetById(orderId);
+            var customerId = _contextUserDataProvider.GetCustomerId();
+            var orders = await _unitOfWork.OrderRepository.GetAll(e => e.CustomerId == customerId && e.Id == orderId);
+            var order = orders.FirstOrDefault();
 
             return Ok(order);
-        }
-        private int GetCustomerId()
-        {
-            return Convert.ToInt32(_httpContextAccessor.HttpContext.User.Claims.FirstOrDefault(e => e.Type == ClaimTypes.NameIdentifier).Value);
-        }
+        } 
     }
 }
