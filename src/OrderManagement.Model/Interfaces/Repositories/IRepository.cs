@@ -2,8 +2,9 @@
 {
     public interface IRepository<T> where T : class
     {
-        IEnumerable<T> GetAll();
-        T GetById(object id);
-        void Insert(T obj);
+        Task<IEnumerable<T>> GetAll();
+        Task<IEnumerable<T>> GetAll(Func<T, bool> expression);
+        Task<T> GetById(int id);
+        Task Insert(T obj);
     }
 }

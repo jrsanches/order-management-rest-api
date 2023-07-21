@@ -1,7 +1,5 @@
 ﻿using OrderManagement.Infrastructure;
-using OrderManagement.Infrastructure.Repositories;
-using OrderManagement.Model.Interfaces;
-using OrderManagement.Model.Interfaces.Repositories;
+using OrderManagement.Infrastructure.Interfaces;
 
 namespace OrderManagement.Api.Extensions
 {
@@ -10,15 +8,8 @@ namespace OrderManagement.Api.Extensions
         public static void ConfigureDependencyInjection(this IServiceCollection services)
         {
             services.AddScoped<IUnitOfWork, UnitOfWork>();
-            services.AddScoped<ICustomerRepository, CustomerRepository>();
-            services.AddScoped<IOrderRepository, OrderRepository>();
-            services.AddScoped<IProductRepository, ProductRepository>();
 
-            //services.AddTransient<SmartAcJwtService>();
-            //services.AddTransient<IAuthorizationHandler, ValidTokenAuthorizationHandler>();
-
-            //services.AddScoped<DeviceReadingAlertService>();
-            //services.AddScoped<DateTimeProvider>();
+            services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
         }
     }
 }

@@ -1,9 +1,17 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFramework>net6.0</TargetFramework>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
   </PropertyGroup>
+
+  <ItemGroup>
+    <Folder Include="IntegrationTests\API\Controllers\" />
+    <Folder Include="UnitTests\API\Controllers\" />
+    <Folder Include="UnitTests\API\Models\" />
+    <Folder Include="UnitTests\Infrastructure\Repositories\" />
+    <Folder Include="UnitTests\" />
+  </ItemGroup>
 
 </Project>

@@ -1,14 +1,12 @@
-﻿using OrderManagement.Model.Interfaces;
-
-namespace OrderManagement.Infrastructure.Repositories
+﻿namespace OrderManagement.Infrastructure.Repositories
 {
     public class Repository
     {
-        protected readonly IUnitOfWork UnitOfWork;
+        protected readonly OrderManagementContext Context;
 
-        public Repository(IUnitOfWork unitOfWork)
+        public Repository(OrderManagementContext context)
         {
-            UnitOfWork = unitOfWork;
+            Context = context;
         }
     }
 }

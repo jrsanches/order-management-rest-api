@@ -35,8 +35,7 @@ namespace OrderManagement.Api.Controllers
             {
                 var authClaims = new List<Claim>
                 {
-                    new Claim(ClaimTypes.Email, user.Email),
-                    new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString()),
+                    new Claim(ClaimTypes.NameIdentifier, user.Id.ToString())
                 };
 
                 var token = GetToken(authClaims);
