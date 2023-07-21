@@ -6,6 +6,9 @@ MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OrderManagement.Api", "src\OrderManagement.Api\OrderManagement.Api.csproj", "{EF58A049-BE01-45B4-B7FC-57482A8427F6}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "0 - Solution Items", "0 - Solution Items", "{724A8906-97DE-433C-AA5B-9A9E7C3E7142}"
+	ProjectSection(SolutionItems) = preProject
+		README.md = README.md
+	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "1 - API", "1 - API", "{5C9FD934-A009-487F-B2E7-41A5D0D02598}"
 EndProject
@@ -15,11 +18,11 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "3 - Infrastructure", "3 - I
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "4 - Tests", "4 - Tests", "{58FD0AB9-C1AD-4895-968B-953D8BEFCBBF}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OrderManagement.Model", "src\OrderManagement.Model\OrderManagement.Model.csproj", "{69307662-8F22-496B-9E12-A2E58FAFF8DE}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OrderManagement.Model", "src\OrderManagement.Model\OrderManagement.Model.csproj", "{69307662-8F22-496B-9E12-A2E58FAFF8DE}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OrderManagement.Infrastructure", "src\OrderManagement.Infrastructure\OrderManagement.Infrastructure.csproj", "{21C81959-82A5-4716-BCAB-17D2B5249891}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OrderManagement.Infrastructure", "src\OrderManagement.Infrastructure\OrderManagement.Infrastructure.csproj", "{21C81959-82A5-4716-BCAB-17D2B5249891}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OrderManagement.Tests", "src\OrderManagement.Tests\OrderManagement.Tests.csproj", "{528B82E5-A5A4-4757-9A50-6CF8501B2AE7}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OrderManagement.Tests", "src\OrderManagement.Tests\OrderManagement.Tests.csproj", "{528B82E5-A5A4-4757-9A50-6CF8501B2AE7}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
