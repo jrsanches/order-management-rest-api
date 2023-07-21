@@ -11,6 +11,10 @@ This is an order management REST API
 ## Run the application
 
     dotnet run
+    
+## Insomnia collection
+
+    Insomnia_order_management.json at the repository root folder
 
 # REST API
 
