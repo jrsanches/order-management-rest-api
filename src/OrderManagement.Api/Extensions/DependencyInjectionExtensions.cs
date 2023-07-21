@@ -1,4 +1,5 @@
-﻿using OrderManagement.Infrastructure;
+﻿using OrderManagement.Api.Providers;
+using OrderManagement.Infrastructure;
 using OrderManagement.Infrastructure.Interfaces;
 
 namespace OrderManagement.Api.Extensions
@@ -8,6 +9,7 @@ namespace OrderManagement.Api.Extensions
         public static void ConfigureDependencyInjection(this IServiceCollection services)
         {
             services.AddScoped<IUnitOfWork, UnitOfWork>();
+            services.AddScoped<ContextUserDataProvider>();
 
             services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
         }
