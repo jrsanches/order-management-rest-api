@@ -1,30 +1,33 @@
 ﻿using OrderManagement.Model.Entities;
-using OrderManagement.Model.Interfaces;
 using OrderManagement.Model.Interfaces.Repositories;
 
 namespace OrderManagement.Infrastructure.Repositories
 {
     public class CustomerRepository : Repository, ICustomerRepository
     {
-        public CustomerRepository(IUnitOfWork unitOfWork) : base(unitOfWork)
+        public CustomerRepository(OrderManagementContext context) : base(context)
         {
 
         }
 
-        public IEnumerable<Customer> GetAll()
+        public async Task<IEnumerable<Customer>> GetAll()
         {
-            throw new NotImplementedException();
+            return await Task.FromResult(Context.Customers.AsEnumerable());
         }
 
-        public Customer GetById(object id)
+        public async Task<IEnumerable<Customer>> GetAll(Func<Customer, bool> expression)
         {
-            throw new NotImplementedException();
+            return await Task.FromResult(Context.Customers.Where(expression));
         }
 
-        public void Insert(Customer obj)
+        public async Task<Customer> GetById(int id)
         {
-            throw new NotImplementedException();
+            return await Task.FromResult(Context.Customers.SingleOrDefault(e => e.Id == id));
         }
 
+        public async Task Insert(Customer obj)
+        {
+            await Task.FromResult(Context.Customers.Add(obj));
+        }
     }
 }

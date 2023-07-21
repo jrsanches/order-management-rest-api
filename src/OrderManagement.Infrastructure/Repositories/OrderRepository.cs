@@ -1,29 +1,36 @@
-﻿using OrderManagement.Model.Entities;
-using OrderManagement.Model.Interfaces;
+﻿using Microsoft.EntityFrameworkCore;
+using OrderManagement.Model.Entities;
 using OrderManagement.Model.Interfaces.Repositories;
 
 namespace OrderManagement.Infrastructure.Repositories
 {
     public class OrderRepository : Repository, IOrderRepository
     {
-        public OrderRepository(IUnitOfWork unitOfWork) : base(unitOfWork)
+
+        public OrderRepository(OrderManagementContext context) : base(context)
         {
 
         }
 
-        public IEnumerable<Order> GetAll()
+        public async Task<IEnumerable<Order>> GetAll()
         {
-            throw new NotImplementedException();
+            return await Task.FromResult(Context.Orders.AsEnumerable());
         }
 
-        public Order GetById(object id)
+        public async Task<IEnumerable<Order>> GetAll(Func<Order, bool> expression)
         {
-            throw new NotImplementedException();
+            return await Task.FromResult(Context.Orders.Where(expression));
         }
 
-        public void Insert(Order obj)
+        public async Task<Order> GetById(int id)
         {
-            throw new NotImplementedException();
+            return await Task.FromResult(Context.Orders.SingleOrDefault(e => e.Id == id));
+        }
+
+        public async Task Insert(Order obj)
+        {
+            await Context.Database.ExecuteSqlAsync(
+                $"sp_CreateOrder @CustomerId={obj.CustomerId}, @ProductId={obj.ProductId}, @QuantityOfProducts={obj.QuantityOfProducts}");
         }
     }
 }
