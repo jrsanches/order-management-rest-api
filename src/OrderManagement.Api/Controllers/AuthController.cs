@@ -25,6 +25,13 @@ namespace OrderManagement.Api.Controllers
             _configuration = configuration;
         }
 
+        /// <summary>
+        /// Athenticate a registered user
+        /// </summary>
+        /// <param name="model"></param>
+        /// <returns></returns>
+        /// <response code="200">You are authorized</response>
+        /// <response code="401">You are unauthorized</response>
         [HttpPost]
         [Route("login")]
         public async Task<IActionResult> Login([FromBody] LoginModel model)
@@ -49,6 +56,13 @@ namespace OrderManagement.Api.Controllers
             return Unauthorized();
         }
 
+        /// <summary>
+        /// Register a new user
+        /// </summary>
+        /// <param name="model"></param>
+        /// <returns></returns>
+        /// <response code="200">User registered successfully</response>
+        /// <response code="500">User already exists or User creation failed</response>
         [HttpPost]
         [Route("register")]
         public async Task<IActionResult> Register([FromBody] RegisterModel model)

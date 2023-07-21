@@ -22,6 +22,13 @@ namespace OrderManagement.Api.Controllers
             _contextUserDataProvider = contextUserDataProvider;
         }
 
+        /// <summary>
+        /// Create a new order
+        /// </summary>
+        /// <param name="model"></param>
+        /// <returns></returns>
+        /// <response code="201">Order created</response>
+        /// <response code="400">Product not found</response>
         [HttpPost]
         public async Task<IActionResult> PostOrder([FromBody] OrderModel model)
         {
@@ -41,6 +48,10 @@ namespace OrderManagement.Api.Controllers
             return StatusCode(StatusCodes.Status201Created);
         }
 
+        /// <summary>
+        /// Get all authorized user orders
+        /// </summary>
+        /// <returns></returns>
         [HttpGet]
         public async Task<IActionResult> GetOrders()
         {
@@ -50,6 +61,11 @@ namespace OrderManagement.Api.Controllers
             return Ok(orders);
         }
 
+        /// <summary>
+        /// Get an authorized user order by id
+        /// </summary>
+        /// <param name="orderId"></param>
+        /// <returns></returns>
         [HttpGet]
         [Route("{orderId}")]
         public async Task<IActionResult> GetOrderById([FromRoute] int orderId)
