@@ -14,6 +14,10 @@ namespace OrderManagement.Api.Controllers
             _unitOfWork = unitOfWork;
         }
 
+        /// <summary>
+        /// Get all products
+        /// </summary>
+        /// <returns></returns>
         [HttpGet]
         public async Task<IActionResult> GetProducts()
         {
@@ -22,6 +26,11 @@ namespace OrderManagement.Api.Controllers
             return Ok(products);
         }
 
+        /// <summary>
+        /// Get a product by id
+        /// </summary>
+        /// <param name="productId"></param>
+        /// <returns></returns>
         [HttpGet]
         [Route("{productId}")]
         public async Task<IActionResult> GetProductById([FromRoute]int productId)
